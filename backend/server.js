@@ -43,20 +43,27 @@ app.post("/todos", (req,res)=>{
     })
 })
 
-
-
-app.put('/update/:id', (req, res)=>{
-    const sql = "update todo set `title` = ?, `description` = ?, `date` = ? where id = ?"
+app.put('/edit/:id', (req, res)=>{
+    const sql = "update todo set `title` = ?, `description` = ?,  `date` = ? where id = ?"
     const values = [
         req.body.title,
         req.body.description,
         req.body.date
     ]
-
-    const {id} = req.params.id;
+    const id = req.params.id;
 
     con.query(sql, [...values,id], (err,data)=> {
         if(err) return res.json(err)
+        return res.json(data)
+    })
+})
+
+
+app.delete("/todos/:id", (req, res) => {
+    const sql = "DELETE FROM todo WHERE id = ?";
+    const id = req.params.id;
+    con.query(sql,[id], (err, data) => {
+        if(err) return res.json(err);
         return res.json(data)
     })
 })

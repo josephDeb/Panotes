@@ -1,34 +1,37 @@
-import { useState} from 'react'
+import { useState, useEffect} from 'react'
 import { toast } from "react-toastify";
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 const Update = () => {
 
-    const [title, setTitle] = useState("");
+  const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
 
-  const {id} = useParams();
+  console.log(title,description,date)
+
   const navigate = useNavigate()
+  const {id} = useParams()
 
-  const handleUpdate = async (e) => {
-    e.prevetDefault();
-    try {
-        await axios.put("http://localhost:8081/update/"+id, {title,description,date})
-        alert("asd")
+  const saveProduct =  async (e) => {
+        e.preventDefault()
+     await axios.put("http://localhost:8081/edit/"+id, {title, description, date})
+    .then(res => {
+        console.log(res)
         navigate("/users")
-    } catch (error) {
-        console.log(error)
-    }
+    }).catch(err => console.log(err))
   }
-
+  useEffect(()=> {
+    saveProduct()
+    
+  }, [])
  
 
   return (
     <div
     className='h-screen max-w-screen-xl  block'>
-      <form onSubmit={handleUpdate}  className='flex flex-col xl:w-[53%] xl:mx-auto justify-center items-center gap-4 mt-8 h-full'>
+      <form onSubmit={saveProduct} className='flex flex-col xl:w-[53%] xl:mx-auto justify-center items-center gap-4 mt-8 h-full'>
 
              <div className='m-4'>
                <h1 className='text-4xl'>Create a TODO</h1>

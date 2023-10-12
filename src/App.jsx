@@ -27,7 +27,7 @@ const App = () => {
               <Route path="/about" element={<SignUp />}/>
               <Route path="/users" element={<HomePage />}/>
               <Route path="/add" element={<Add/>}/>
-              <Route path="/update/:id" element={<Update />}/>
+              <Route path="/edit/:id" element={<Update />}/>
           </Routes>
           <ToastContainer />
       </Router>

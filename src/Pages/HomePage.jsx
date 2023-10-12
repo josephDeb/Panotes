@@ -3,7 +3,9 @@ import { useEffect, useState } from 'react'
 import {FaTrash, FaPen,FaPlus} from 'react-icons/fa6'
 import {AiFillEye} from 'react-icons/ai'
 import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import axios from 'axios'
+import Swal from 'sweetalert2'
 
 
 const HomePage = () => {
@@ -27,9 +29,35 @@ const HomePage = () => {
       handleSubmit()
   }, [])
 
-  const idb = (id) => {
-    alert(id)
-  }
+  const handleDelete = async (id)=> {
+    const result = await Swal.fire({
+      title: "Do you really want to delete the product",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#ed1d24",
+      confirmButtonText: "Yes, delete it!",
+      
+    })
+    if(result.isConfirmed){
+      try {
+        await axios.delete(`http://localhost:8081/todos/`+id);
+        toast.success("Succesfuly Deleted");
+        window.location.reload();
+        handleSubmit();
+      }catch (err) {
+        console.log(err)
+      }
+    }
+
+    console.log("CLICKED")
+    }
+
+    const [click, setClick] = useState(true);
+    const handleClick = () => {
+        setClick(!click)
+        console.log(click)
+    }
 
   return (
     <div className='h-screen max-w-screen-xl mx-auto '>
@@ -37,10 +65,10 @@ const HomePage = () => {
            
            <div className='mt-28 flex flex-col w-full h-full gap-8'>
                {todos.map((td, i)=> {
-                    return <div key={i} className='flex  w-[88%] mx-auto justify-between items-center border-2 border-gray-400 bg-slate-200 h-20 px-8 '>
+                    return <div key={i} className={`flex  w-[88%] mx-auto justify-between items-center ${click ? "border-2 border-gray-400 bg-slate-200" : "border-2 border-gray-400 bg-green-500"} h-20 px-8 `}>
                      <div className='flex gap-4 justify-center items-center'>
                          <div className='flex justify-center items-center'>
-                         <input type='checkbox' className='h-8 w-6 cursor-pointer'></input>
+                         <input onClick={() => handleClick()} type='checkbox' className='h-8 w-6 cursor-pointer'></input>
                          </div>
     
                          <h1 className='text-black font-semibold'>{td.title}</h1>
@@ -48,10 +76,10 @@ const HomePage = () => {
     
                       <div className='flex gap-8 text-xl'>
                         <AiFillEye className='text-2xl cursor-pointer'/>
-                        <Link to={`/update/${td.id}`}>
-                        <FaPen onClick={() => idb(td.id)} className='cursor-pointer text-green-500'/>
+                        <Link to={`/edit/${td.id}`}>
+                        <FaPen className='cursor-pointer text-green-500'/>
                         </Link>       
-                        <FaTrash className='text-[#ed1d24] cursor-pointer'/>
+                        <FaTrash onClick={() => handleDelete(td.id)} className='text-[#ed1d24] cursor-pointer'/>
                       </div>
 
                     </div>
