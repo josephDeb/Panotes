@@ -1,13 +1,15 @@
 import {BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Navbar from "./components/Navbar"
 import { ToastContainer } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css'
 import About from "./components/About"
 import Service from "./components/Service"
 import Login from "./components/Login"
 import SignUp from "./components/SignUp"
 import HomePage from "./Pages/HomePage"
 import TodoAppPage from "./components/TodoAppPage"
-import AddTodo from "./Pages/AddTodo"
+import Add from "./Pages/Add"
+import Update from "./Pages/Update"
 
 
 const App = () => {
@@ -24,7 +26,8 @@ const App = () => {
               <Route path="/about" element={<Login />}/>
               <Route path="/about" element={<SignUp />}/>
               <Route path="/users" element={<HomePage />}/>
-              <Route path="/addTodo" element={<AddTodo />}/>
+              <Route path="/add" element={<Add/>}/>
+              <Route path="/update/:id" element={<Update />}/>
           </Routes>
           <ToastContainer />
       </Router>

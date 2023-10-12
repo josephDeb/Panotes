@@ -3,36 +3,39 @@ import mysql from "mysql"
 import cors from 'cors'
 import cookieParser from "cookie-parser";
 
+
 const app = express();
 app.use(cors());
-app.use(cookieParser());
 app.use(express.json());
+app.use(cookieParser());
 
 const con = mysql.createConnection({
     host: 'localhost',
     user: "root",
     password: "password",
-    database: 'products'
-})
-app.get("/",   (req,res)=>{
-    return res.json("FROM BACEKND")
+    database: 'todolist'
 })
 
-app.get("/users", (req,res)=>{
-    const sql = "SELECT * FROM items";
+
+app.get("/", (req, res) => {
+    res.send("hello NODE APi")
+})
+
+
+app.get("/todos", (req,res)=>{
+    const sql = "SELECT * FROM todo";
     con.query(sql, (err, data)=>{
         if(err) return res.json(err)
         return res.json(data)
     })
 })
 
-app.post('/users', (req, res)=>{
-    const sql = "INSERT INTO items (`item_name`, `stocks`, `price`, `image`) VALUES (?)";
+app.post("/todos", (req,res)=>{
+    const sql = "INSERT INTO todo (`title`, `description`, `date`) VALUES (?)";
     const values = [
-        req.body.item_name,
-        req.body.stocks,
-        req.body.price,
-        req.body.image
+        req.body.title,
+        req.body.description,
+        req.body.date
     ]
     con.query(sql, [values], (err,data)=> {
         if(err) return res.json(err)
@@ -41,15 +44,16 @@ app.post('/users', (req, res)=>{
 })
 
 
-app.put('/edit/:id', (req, res)=>{
-    const sql = "update items set `item_name` = ?, `stocks` = ?, `price` = ?, `image` = ? where id = ?"
+
+app.put('/update/:id', (req, res)=>{
+    const sql = "update todo set `title` = ?, `description` = ?, `date` = ? where id = ?"
     const values = [
-        req.body.item_name,
-        req.body.stocks,
-        req.body.price,
-        req.body.image
+        req.body.title,
+        req.body.description,
+        req.body.date
     ]
-    const id = req.params.id;
+
+    const {id} = req.params.id;
 
     con.query(sql, [...values,id], (err,data)=> {
         if(err) return res.json(err)
@@ -57,18 +61,7 @@ app.put('/edit/:id', (req, res)=>{
     })
 })
 
-app.delete('/users/:id', (req, res)=>{
-    const sql = "DELETE FROM items WHERE id = ?";
-    const id = req.params.id;
-    con.query(sql, [id], (err,data)=> {
-        if(err) return res.json("error");
-        return res.json(data);
-    })
-})
 
-
-
-
-app.listen(8082, ()=> {
-    console.log("RUNNING");
+app.listen(8081, () => {
+    console.log("RUNNING")
 })
