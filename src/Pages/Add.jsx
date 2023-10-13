@@ -24,7 +24,7 @@ const Add = () => {
             
 
             const response =await axios.post("http://localhost:8081/todos", {title: title, description: description, date: date});
-            toast.success("Added Succesfuly")
+            toast.success(`${title} Successfuly Added`)
             console.log(response)
             navigate("/users")
         } catch (error) {

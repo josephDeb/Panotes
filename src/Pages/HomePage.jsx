@@ -13,7 +13,6 @@ const HomePage = () => {
   const [todos, setTodos] = useState([]);
   console.log(todos.title)
 
-
   
   const handleSubmit = async () => {
     try{
@@ -22,29 +21,32 @@ const HomePage = () => {
     } catch(error) {
       console.log(error)
     }
-    
   }
 
   useEffect(()=>{
       handleSubmit()
   }, [])
 
+  
+
   const handleDelete = async (id)=> {
     const result = await Swal.fire({
-      title: "Do you really want to delete the product",
+      title: "Do you really want to delete the task",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
+      confirmButtonColor: "#c3c3c3",
       cancelButtonColor: "#ed1d24",
       confirmButtonText: "Yes, delete it!",
       
     })
     if(result.isConfirmed){
       try {
+        
         await axios.delete(`http://localhost:8081/todos/`+id);
-        toast.success("Succesfuly Deleted");
         window.location.reload();
+        toast.success("Succesfuly Deleted");
         handleSubmit();
+        
       }catch (err) {
         console.log(err)
       }
@@ -56,7 +58,11 @@ const HomePage = () => {
     const [click, setClick] = useState(true);
     const handleClick = () => {
         setClick(!click)
-        console.log(click)
+        if(click === true) {
+          toast.success("Yey! You've finish your task.")
+        }else {
+          toast.warn("task is not already finish")
+        }
     }
 
   return (
@@ -65,10 +71,10 @@ const HomePage = () => {
            
            <div className='mt-28 flex flex-col w-full h-full gap-8'>
                {todos.map((td, i)=> {
-                    return <div key={i} className={`flex  w-[88%] mx-auto justify-between items-center ${click ? "border-2 border-gray-400 bg-slate-200" : "border-2 border-gray-400 bg-green-500"} h-20 px-8 `}>
+                    return <div key={i} className={`flex  w-[88%] mx-auto justify-between items-center border-2 border-gray-400 bg-slate-200 h-20 px-8 `}>
                      <div className='flex gap-4 justify-center items-center'>
                          <div className='flex justify-center items-center'>
-                         <input onClick={() => handleClick()} type='checkbox' className='h-8 w-6 cursor-pointer'></input>
+                         <input onClick={() => handleClick(td.id)} type='checkbox' className='h-8 w-6 cursor-pointer'></input>
                          </div>
     
                          <h1 className='text-black font-semibold'>{td.title}</h1>
