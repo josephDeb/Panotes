@@ -3,12 +3,12 @@ import {MdMenu} from 'react-icons/md'
 import { MdClose } from 'react-icons/md';
 import BurgerNavbar from '../Pages/BurgerNavbar';
 const Navbar = () => {
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(true);
     const handleBurger = () => {
         setOpen(!open)
     }
   return (
-    <div className='w-full rowFlex flex-col'>
+    <div className='w-full rowFlex flex-col '>
         <div className='w-full h-16 
         flex justify-end items-center'>
             <div className='w-12 py-2 ' onClick={() => handleBurger()}>

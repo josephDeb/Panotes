@@ -11,3 +11,11 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+.space2 {
+    letter-spacing: 6px;
+}
+
+.space3 {
+    letter-spacing: 8px;
+}

@@ -4,23 +4,42 @@ import { ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
 import Navbar from "./components/Navbar";
 import Notepad from "./components/Notepad";
-import EditNote from "./components/EditNote";
-
+import { useEffect, useState} from "react";
+import HashLoader	 from "react-spinners/HashLoader";
+import AddNote from "./components/AddNote";
 
 
 const App = () => {
+  const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+      setLoading(true)
+      setTimeout(() => {
+        setLoading(false)
+      }, 4000)
+  }, [])
 
   return (
     <>
-      <Router>
-        <Navbar />
-          <Routes>
-              <Route path="/" element={<Notepad />}/>
-              <Route path="/edit_note/:id" element={<EditNote />}/>
-          </Routes>
-          <ToastContainer />
-      </Router>
+     {loading ? <div className="flex justify-center items-center h-screen">
+      <HashLoader	
+        loading={loading}
+        color={"#ffffff"}
+        size={80}
+        aria-label="HashLoader	"
+        data-testid="loader"
+      />
+     </div>
+     :
+     <Router>
+     <Navbar />
+       <Routes>
+           <Route path="/" element={<Notepad />}/>
+           <Route path="/add_note" element={<AddNote />}/>
+       </Routes>
+       <ToastContainer />
+   </Router>
+    }
     </> 
   )
 };
