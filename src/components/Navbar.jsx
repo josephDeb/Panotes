@@ -1,77 +1,27 @@
-import {useState,} from 'react'
-import { Link } from 'react-router-dom'
-import { AiOutlineMenu, } from 'react-icons/ai'
-import { FaX} from 'react-icons/fa6'
-
+import { useState } from 'react'
+import {MdMenu} from 'react-icons/md'
+import { MdClose } from 'react-icons/md';
+import BurgerNavbar from '../Pages/BurgerNavbar';
 const Navbar = () => {
-
-  const [click, setClick] = useState(false);
-
-  const handleClick = ()=>{
-      setClick(!click);
-      console.log(click);
-  }
-
+    const [open, setOpen] = useState(false);
+    const handleBurger = () => {
+        setOpen(!open)
+    }
   return (
-    <div className='flex flex-col justify-center items-center w-full'>
-        <div className='xl:h-12 h-12  bg-gradient-to-br from-red-600 to-red-900 flex justify-end items-center w-full fixed top-0'>
-
-        <div className=' text-white mr-12 gap-6 font-semibold hidden xl:flex'>
-                <Link to={'/home'}>
-                    <h1>Home</h1>
-                </Link>
-                <Link>
-                    <h1>About</h1>
-                </Link>
-                <Link>
-                    <h1>Service</h1>
-                </Link>
-                <Link to={'/users'}>
-                <h1>Login</h1>
-                </Link>
-                <Link>
-                <h1>Sign up</h1>
-                </Link>               
+    <div className='w-full rowFlex flex-col'>
+        <div className='w-full h-16 
+        flex justify-end items-center'>
+            <div className='w-12 py-2 ' onClick={() => handleBurger()}>
+                {open ? <MdMenu className='text-white text-4xl transition-all duration-300'/>
+                :
+                <MdClose className='text-white text-4xl transition-all duration-300'/>
+                }
+            </div>           
         </div>
-
-        <div onClick={() => handleClick()} className='xl:hidden mr-4 '>{
-         click ?   
-         <FaX className='text-white text-2xl cursor-pointer'/>
-         : 
-         <AiOutlineMenu className='text-white text-2xl cursor-pointer'/> 
-        }
+        
+        <div className='w-full'>
+            <BurgerNavbar open={open}/>
         </div>
-      </div>
-
-  
-   
-      <div className={`${click ? 'right-0 transition-all duration-300' : '-right-full transition-all duration-300'} flex flex-col justify-between    w-full z-[99]  bg-white fixed h-full shadow-xl md:w-[48vw] lg:w-[44vw] xl:w-[35vw]  md:bg-white md:border-2 top-12 xl:hidden`}>
-
-      <div className='absolute w-full flex justify-center items-center flex-col h-screen gap-8'>
-              <Link to={'/home'} className='bg-slate-100 w-[62%] text-center py-2 rounded-sm active:scale-110 transition-all duration-200 font-bold shadow-xl'>
-                    <h1>Home</h1>
-                </Link>
-                <Link className='bg-slate-100 w-[62%] text-center py-2 rounded-sm active:scale-110 transition-all duration-200 font-bold shadow-lg'>
-                    <h1>About</h1>
-                </Link>
-                <Link className='bg-slate-100 w-[62%] text-center py-2 rounded-sm active:scale-110 transition-all duration-200 font-bold shadow-lg'>
-                    <h1>Service</h1>
-                </Link>
-                <Link to={'/users'} className='bg-slate-100 w-[62%] text-center py-2 rounded-sm active:scale-110 transition-all duration-200 font-bold shadow-lg'>
-                <h1>Login</h1>
-                </Link>
-                <Link className='bg-slate-100 w-[62%] text-center py-2 rounded-sm active:scale-110 transition-all duration-200 font-bold shadow-lg'>
-                <h1>Sign up</h1>
-                </Link> 
-
-                <div className='h-28 w-full text-center flex-col flex justify-center items-center'>
-                      <h1 className='text-4xl'>TODO<span className='underline text-red-500'>LIST</span>
-                      </h1>
-                      <p>Make your day best with us</p>
-                </div> 
-        </div>  
-  
-      </div>
 
     </div>
   )
