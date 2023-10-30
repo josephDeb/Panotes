@@ -2,7 +2,6 @@ import {BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
 import { ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
-import Navbar from "./components/Navbar";
 import Notepad from "./components/Notepad";
 import { useEffect, useState} from "react";
 import HashLoader	 from "react-spinners/HashLoader";
@@ -22,7 +21,7 @@ const App = () => {
 
   return (
     <>
-     {loading ? <div className="flex justify-center items-center h-screen">
+     {loading ? <div className="flex justify-center items-center h-screen flex-col">
       <HashLoader	
         loading={loading}
         color={"#ffffff"}
@@ -30,10 +29,10 @@ const App = () => {
         aria-label="HashLoader	"
         data-testid="loader"
       />
+      <h1 className="text-white text-xl mt-8">Loading</h1>
      </div>
      :
      <Router>
-     <Navbar />
        <Routes>
            <Route path="/" element={<Notepad />}/>
            <Route path="/add_note" element={<AddNote />}/>
