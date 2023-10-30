@@ -61,7 +61,7 @@ const EditNote = () => {
         <h1 className="text-white text-xl mt-8">Update Notes</h1>
       </div> 
       :
-      <div className="w-full h-[80vh] flex justify-between items-center flex-col">
+      <div className="w-full h-[73vh] flex justify-between items-center flex-col">
         <Link to={"/"} className="h-20 w-full">
               <MdArrowLeft className="text-white text-7xl mt-4"/>
         </Link>
@@ -73,7 +73,7 @@ const EditNote = () => {
               <form onSubmit={handleUp}  className="flex flex-col w-full">
                   <div className="w-full flex flex-col justify-center items-center">
                       <div className="w-[71%] h-16 flex justify-center items-center border-t-2 border-white hover:mb-4 transition-all duration-300">
-                            <input value={data.title} onChange={(e) => setData({...data, title: e.target.value})} name="title"  className="h-12 w-full font-semibold text-sm text-center " type="text" placeholder="TITLE"></input>
+                            <input value={data.title} onChange={(e) => setData({...data, title: e.target.value})} name="title"  className="h-12 w-full font-semibold text-xl text-center uppercase" type="text" placeholder="TITLE"></input>
                       </div>
 
                       <div className="w-[71%] h-[190px] flex justify-center items-center border-t-2 border-white mt-2 hover:my-4 transition-all duration-300">

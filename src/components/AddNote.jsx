@@ -52,7 +52,7 @@ const AddNote = () => {
         <h1 className="text-white text-xl mt-8">Create notes</h1>
       </div> 
       :
-      <div className="w-full h-[80vh] flex justify-between items-center flex-col">
+      <div className="w-full h-[76vh] flex justify-between items-center flex-col">
         <Link to={"/"} className="h-20 w-full">
               <MdArrowLeft className="text-white text-7xl mt-4 ml-2"/>
         </Link>
