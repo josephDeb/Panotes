@@ -7,6 +7,7 @@ import Notepad from "./components/Notepad";
 import { useEffect, useState} from "react";
 import HashLoader	 from "react-spinners/HashLoader";
 import AddNote from "./components/AddNote";
+import EditNote from "./components/EditNote";
 
 
 const App = () => {
@@ -36,6 +37,7 @@ const App = () => {
        <Routes>
            <Route path="/" element={<Notepad />}/>
            <Route path="/add_note" element={<AddNote />}/>
+           <Route path="/edit_note/:id" element={<EditNote />}/>
        </Routes>
        <ToastContainer />
    </Router>

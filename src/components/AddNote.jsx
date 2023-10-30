@@ -25,14 +25,14 @@ const AddNote = () => {
       formData.append("mynotes", value.mynotes);
       formData.append("title", value.title);
       formData.append("image", value.image);
-      axios.post("http://localhost:8088/mynotes/add_note", formData)
+      axios.post("http://localhost:8088/notesapp/add_note", formData)
       .then(result => {
         if(result.data.Status) {
           setLoading(true)
           setTimeout(() => {
             setLoading(false)
             navigate("/")
-          }, 4000)
+          }, 3000)
         }
       })
       .catch(err => console.log(err))
@@ -59,15 +59,15 @@ const AddNote = () => {
               <form onSubmit={handleAdd} className="flex flex-col w-full">
                   <div className="w-full flex flex-col justify-center items-center">
                       <div className="w-[71%] h-16 flex justify-center items-center border-t-2 border-white hover:my-4 transition-all duration-300">
-                            <input name="title" required onChange={(e) => setValue({...value, title: e.target.value})} className="h-12 w-full font-semibold text-xl text-center space2" type="text" placeholder="TITLE"></input>
+                            <input name="title" required onChange={(e) => setValue({...value, title: e.target.value})} className="h-12 w-full font-semibold text-xl text-center " type="text" placeholder="TITLE"></input>
                       </div>
 
                       <div className="w-[71%] h-16 flex justify-center items-center border-t-2 border-white hover:my-4 transition-all duration-300">
-                            <input name="mynotes" required onChange={(e) => setValue({...value, mynotes: e.target.value})} className="h-12 w-full font-semibold text-xl text-center space2" placeholder="DESCRIPTION" type="text"></input>
+                            <input name="mynotes" required onChange={(e) => setValue({...value, mynotes: e.target.value})} className="h-12 w-full font-semibold text-xl text-center " placeholder="DESCRIPTION" type="text"></input>
                       </div>
 
-                      <div className="w-[71%] h-16 mt-4 flex justify-center items-center border-t-2 border-white hover:my-4 transition-all duration-300 ">
-                            <input required onChange={(e) => setValue({...value, image: e.target.files[0]})} className="h-12 font-semibold text-md w-full text-white" type="file" name="image"></input>
+                      <div className="w-[71%] h-16 mt-4 flex justify-center items-center border-t-2 border-white hover:mt-4 transition-all duration-300 ">
+                            <input required onChange={(e) => setValue({...value, image: e.target.files[0]})} className="text-white w-full font-semibold cursor-pointer" type="file" name="image"></input>
                       </div>
                       
 
