@@ -29,12 +29,12 @@ const App = () => {
         aria-label="HashLoader	"
         data-testid="loader"
       />
-      <h1 className="text-white text-xl mt-8">Loading</h1>
+      <h1 className="text-white text-xl mt-8 ">Loading</h1>
      </div>
      :
      <Router>
        <Routes>
-           <Route path="/" element={<Notepad />}/>
+           <Route path="/home" element={<Notepad />}/>
            <Route path="/add_note" element={<AddNote />}/>
            <Route path="/edit_note/:id" element={<EditNote />}/>
        </Routes>

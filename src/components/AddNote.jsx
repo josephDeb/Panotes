@@ -32,7 +32,7 @@ const AddNote = () => {
           setLoading(true)
           setTimeout(() => {
             setLoading(false)
-            navigate("/")
+            navigate("/home")
           }, 2000)
         }
       })
@@ -49,11 +49,11 @@ const AddNote = () => {
         aria-label="loading spinner	"
         data-testid="loader"
         />
-        <h1 className="text-white text-xl mt-8">Create notes</h1>
+        <h1 className="text-white text-xl mt-8">Creating notes</h1>
       </div> 
       :
       <div className="w-full h-[76vh] flex justify-between items-center flex-col">
-        <Link to={"/"} className="h-20 w-full">
+        <Link to={"/home"} className="h-20 w-full">
               <MdArrowLeft className="text-white text-7xl mt-4 ml-2"/>
         </Link>
           <div className="w-full flex flex-col gap-8">

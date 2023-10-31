@@ -10,7 +10,7 @@ const BurgerNavbar = ({open, handleBurger}) => {
         :
         <div className="h-[80vh] w-full flex flex-col justify-between items-center gap-8 text-white">
             <div className="w-full flex flex-col justify-center items-center gap-8 text-white mt-44">
-            <Link onClick={() => handleBurger()} to={'/'} className="text-2xl font-bold">
+            <Link onClick={() => handleBurger()} to={'/home'} className="text-2xl font-bold">
               <div>Home</div>
             </Link>
             <div className="text-2xl font-bold">

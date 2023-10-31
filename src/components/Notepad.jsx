@@ -2,9 +2,11 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { MdAdd, MdEdit, MdDelete } from "react-icons/md";
+
 import Navbar from "./Navbar";
 
 const Notepad = () => {
+  
 
     const [notes, setNotes] = useState([])
 
@@ -25,7 +27,7 @@ const Notepad = () => {
         axios.delete("http://localhost:8088/notesapp/delete_note/"+id)
         .then(result => {
             if(result.data.Status) {
-                navigate('/')
+                navigate("/home")
             } else {
                 alert(result.data.Error) 
             }
@@ -33,7 +35,9 @@ const Notepad = () => {
     }
 
   return (
-    <div className="w-full h-[90vh]">
+    <>
+      
+        <div className="w-full h-[90vh]">
         <Navbar />
         <div className="flex flex-col justify-center items-center w-full relative pb-44">  
             <div className="flex justify-between items-center mt-8 w-full px-10">
@@ -42,7 +46,7 @@ const Notepad = () => {
                 <Link className="border-2 hover:bg-white hover:text-black text-white transition-all duration-300" to={"/add_note"}><MdAdd className="text-6xl hover:rotate-180 transition-all duration-200"/></Link>
             </div>
 
-            <div className="grid grid-cols-1 gap-4 mt-12 w-full px-6">
+            <div className="grid grid-cols-1 gap-6 mt-12 w-full px-6">
             {notes.map((nt, i) => {
                 return <div key={i} className="w-full h-[260px] text-white flex flex-col border-2 rounded-[17px]">
                     
@@ -73,6 +77,12 @@ const Notepad = () => {
             </div> 
         </div>
     </div>
+
+    
+
+        
+        
+    </>
   )
 }
 

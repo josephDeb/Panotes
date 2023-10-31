@@ -4,7 +4,7 @@ import  NotesRoute  from "./Routes/NotesRoute.js"
 import cookieParser from 'cookie-parser'
 const app = express();
 app.use(cookieParser());
-app.use(express.json())
+app.use(express.json());
 app.use(express.static("Public"))
 app.use(cors({
     origin: ["http://localhost:5173"],
