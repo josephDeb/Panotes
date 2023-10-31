@@ -32,7 +32,7 @@ const AddNote = () => {
           setLoading(true)
           setTimeout(() => {
             setLoading(false)
-            navigate("/home")
+            navigate("/")
           }, 2000)
         }
       })
@@ -53,7 +53,7 @@ const AddNote = () => {
       </div> 
       :
       <div className="w-full h-[76vh] flex justify-between items-center flex-col">
-        <Link to={"/home"} className="h-20 w-full">
+        <Link to={"/"} className="h-20 w-full">
               <MdArrowLeft className="text-white text-7xl mt-4 ml-2"/>
         </Link>
           <div className="w-full flex flex-col gap-8">

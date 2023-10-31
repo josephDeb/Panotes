@@ -40,7 +40,7 @@ const EditNote = () => {
           setLoading(true)
           setTimeout(() => {
             setLoading(false)
-            navigate("/home")
+            navigate("/")
           }, 1000)
         } else{
           console.log("error")
@@ -61,8 +61,8 @@ const EditNote = () => {
         <h1 className="text-white text-xl mt-8">Editing Notes</h1>
       </div> 
       :
-      <div className="w-full h-[73vh] flex justify-between items-center flex-col">
-        <Link to={"/home"} className="h-20 w-full">
+      <div className="w-full h-[82vh] flex justify-between items-center flex-col">
+        <Link to={"/"} className="h-20 w-full">
               <MdArrowLeft className="text-white text-7xl mt-4"/>
         </Link>
           <div className="w-full flex flex-col gap-8">

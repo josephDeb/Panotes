@@ -34,7 +34,7 @@ const App = () => {
      :
      <Router>
        <Routes>
-           <Route path="/home" element={<Notepad />}/>
+           <Route path="/" element={<Notepad />}/>
            <Route path="/add_note" element={<AddNote />}/>
            <Route path="/edit_note/:id" element={<EditNote />}/>
        </Routes>
