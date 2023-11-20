@@ -47,7 +47,7 @@ const Notepad = () => {
           
             </div>
 
-            {notes.length > 0 ? <div className="grid grid-cols-1 gap-6 mt-12 w-full px-6">
+            {notes.length > 0 ? <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 mt-12 w-full px-6">
             {notes.map((nt, i) => {
                     return <div key={i} className="w-full h-[260px] text-white flex flex-col border-2 rounded-[17px]">
                         

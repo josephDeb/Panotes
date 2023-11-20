@@ -15,7 +15,7 @@ const Navbar = () => {
                 {open ? <MdMenu className='text-white text-4xl transition-all duration-300 scale-y-150 cursor-pointer'/>
                 :
                 <MdClose className='text-white text-4xl transition-all duration-300 cursor-pointer'/>
-                }
+                } 
             </div>           
         </div>
         

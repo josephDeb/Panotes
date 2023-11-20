@@ -52,11 +52,11 @@ const AddNote = () => {
         <h1 className="text-white text-xl mt-8">Creating notes</h1>
       </div> 
       :
-      <div className="w-full h-[76vh] flex justify-between items-center flex-col">
+      <div className="w-full h-[76vh]  flex justify-between items-center flex-col">
         <Link to={"/"} className="h-20 w-full">
               <MdArrowLeft className="text-white text-7xl mt-4 ml-2"/>
         </Link>
-          <div className="w-full flex flex-col gap-8">
+          <div className="w-full xl:w-[62%] xl:mx-auto xl:mt-10 flex flex-col gap-8">
               <div className="flex justify-center items-center">
                   <h1 className="text-white text-2xl font-bold space2">Adding notes</h1>
               </div>
