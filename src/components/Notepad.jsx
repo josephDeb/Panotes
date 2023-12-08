@@ -59,7 +59,7 @@ const Notepad = () => {
     
                             <div className="w-[160px] h-full flex justify-between pt-6 items-center flex-col pr-4">
                                 <div className=" w-full">
-                                    <img className="h-[170px] w-[161px] rounded-md hover:rotate-6 transition-all duration-300" src={'http://localhost:8088/Images/'+nt.image}/>
+                                    <img className="h-[170px] w-[161px] rounded-md hover:rotate-6 transition-all duration-300 object-cover" src={'http://localhost:8088/Images/'+nt.image}/>
                                 </div>
     
                                 <div  className="flex justify-start items-center h-[54px] gap-4  w-full">
